@@ -1,0 +1,9 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "html.format.enable": false,
+    "prettier.printWidth": 1000,
+    "editor.formatOnSave": false,
+    "editor.suggestSelection": "first"
+}
