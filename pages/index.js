@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Layout from '../components/layout'
 import Heros from '../components/landing/heros'
 import Chooseus from '../components/landing/choseuse'
+import Product from '../components/landing/products'
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <main>
         <Heros/>
         <Chooseus />
+        <Product />
       </main>
       </>
     </Layout>
