@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
 import Layout from '../components/layout'
 import Heros from '../components/landing/heros'
+import Chooseus from '../components/landing/choseuse'
 
 export default function Home() {
   return (
@@ -15,6 +15,7 @@ export default function Home() {
       </Head>
       <main>
         <Heros/>
+        <Chooseus />
       </main>
       </>
     </Layout>
