@@ -13,7 +13,7 @@ const Product = () => {
             <div className="text-sm cursor-pointer lg:text-base font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-600 text-left">Tampilkan lebih banyak</div>
           </Link>
         </div>
-        <div className="flex flex-row w-full overflow-x-scroll space-x-5 p-2 lg:justify-around">
+        <div className="flex flex-row w-full overflow-x-scroll space-x-5 p-2 lg:justify-around no-scrollbar">
           {dummy.map((_) => (
             <div className="flex-none w-52 h-72 rounded-lg shadow duration-500 hover:shadow-lg">
               <img src="/assets/coffe.jpg" className="rounded-t-lg object-center object-cover w-full h-44"></img>
