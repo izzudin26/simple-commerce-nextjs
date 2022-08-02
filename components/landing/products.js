@@ -14,8 +14,8 @@ const Product = () => {
           </Link>
         </div>
         <div className="flex flex-row w-full overflow-x-scroll space-x-5 p-2 lg:justify-around no-scrollbar">
-          {dummy.map((_) => (
-            <div className="flex-none w-52 h-72 rounded-lg shadow duration-500 hover:shadow-lg">
+          {dummy.map((_, i) => (
+            <div className="flex-none w-52 h-72 rounded-lg shadow duration-500 hover:shadow-lg" key={i}>
               <img src="/assets/coffe.jpg" className="rounded-t-lg object-center object-cover w-full h-44"></img>
               <div className="p-2 flex flex-col space-y-2 justify-between">
                 <p className="font-medium text-clip text-sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
