@@ -11,7 +11,7 @@ const Navbar = () => {
     <>
       <div className="flex flex-col lg:hidden px-5 pt-3 w-full shadow">
         <div className="w-full flex-row space-x-5 items-center flex justify-between">
-          <img src="vercel.svg" className="h-6" />
+          <img src="/vercel.svg" className="h-6" />
           <button onClick={switchNav} className="p-1 py-2 rounded-md hover:text-blue-600 focus:outline-none">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
