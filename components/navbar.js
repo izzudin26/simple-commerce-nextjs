@@ -47,7 +47,7 @@ const Navbar = () => {
             <Link href="/">
               <span className="text-blue-600 font-semibold cursor-pointer">Beranda</span>
             </Link>
-            <Link href="/products">
+            <Link href="/product">
               <span className="text-gray-500 font-semibold cursor-pointer">Produk</span>
             </Link>
             <Link href="/cart">
