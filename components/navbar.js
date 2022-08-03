@@ -40,7 +40,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="p-5 w-full flex-row space-x-5 items-center hidden lg:flex">
-        <img src="vercel.svg" className="h-8" />
+        <img src="/vercel.svg" className="h-8" />
         <div className="w-0.5 h-8 bg-gray-400"></div>
         <div className="flex flex-row items-center justify-between w-full">
           <div className="flex flex-row space-x-6">
