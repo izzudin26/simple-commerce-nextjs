@@ -10,7 +10,8 @@ module.exports = {
     },
     extend: {
       transitionProperty: {
-        'height': 'height'
+        'height': 'height',
+        'width': 'width'
       }
     },
   },
