@@ -26,9 +26,6 @@ const Navbar = () => {
             <span className="text-gray-500 font-semibold text-sm  cursor-pointer w-full">Produk</span>
           </Link>
           <Link href="/cart">
-            <span className="text-gray-500 font-semibold text-sm  cursor-pointer w-full">Keranjang</span>
-          </Link>
-          <Link href="/cart">
             <span className="text-gray-500 font-semibold  text-sm cursor-pointer w-full">Tentang Kami</span>
           </Link>
           <Link href="/registration">
@@ -49,9 +46,6 @@ const Navbar = () => {
             </Link>
             <Link href="/product">
               <span className="text-gray-500 font-semibold cursor-pointer">Produk</span>
-            </Link>
-            <Link href="/cart">
-              <span className="text-gray-500 font-semibold cursor-pointer">Keranjang</span>
             </Link>
             <Link href="/cart">
               <span className="text-gray-500 font-semibold cursor-pointer">Tentang Kami</span>
