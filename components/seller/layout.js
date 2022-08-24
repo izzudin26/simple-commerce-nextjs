@@ -2,10 +2,10 @@ import SellerNavbar from "./navbar"
 
 const SellerLayout = ({children}) => {
     return (
-        <>
+        <div className="flex flex-col lg:flex-row w-full">
             <SellerNavbar/>
-            <main>{children}</main>
-        </>
+            <main className="w-full">{children}</main>
+        </div>
     )
 }
 
