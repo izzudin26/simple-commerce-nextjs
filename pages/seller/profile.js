@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useState } from "react";
-import Layout from "../components/layout";
+import SellerLayout from "../../components/seller/layout";
 const Registration = () => {
   const [fullname, setFullName] = useState("");
   const [gender, setGender] = useState("");
@@ -11,14 +11,14 @@ const Registration = () => {
   const [imagePath, setImagePath] = useState("");
 
   return (
-    <Layout>
+    <SellerLayout>
       <>
         <Head>
-          <title>Registration</title>
+          <title>Profile</title>
         </Head>
         <main className="flex flex-col w-full min-h-screen items-center justify-center">
           <div className="flex flex-col space-y-3 p-5 rounded-lg w-full md:w-2/4 lg:w-2/6">
-            <h1 className="font-semibold text-2xl">Registration</h1>
+            <h1 className="font-semibold text-2xl">Profile</h1>
             <div className="flex flex-col justify-center items-center relative">
               <img src="/assets/placeholder.png" className="w-60 h-60 rounded-full"></img>
               <label htmlFor="changeImage" className="absolute bottom-0 right-0 p-3 rounded-full bg-white ring-gray-300 ring-2">
@@ -53,7 +53,7 @@ const Registration = () => {
           </div>
         </main>
       </>
-    </Layout>
+    </SellerLayout>
   );
 };
 
