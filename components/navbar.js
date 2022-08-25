@@ -1,12 +1,21 @@
 import Link from "next/link";
 import { useState } from "react";
+import {loginGoogle} from "../service/auth"
+import {useRouter} from "next/router"
 
 const Navbar = () => {
+  const router = useRouter()
   const [toggleNav, setToggleNav] = useState(false);
   const switchNav = () => {
     setToggleNav(!toggleNav);
     console.log(toggleNav);
   };
+
+  const doLogin = async () => {
+    const uid = await loginGoogle()
+    localStorage.setItem("id", uid)
+    router.push("/registration")
+  }
   return (
     <>
       <div className="flex flex-col lg:hidden px-5 pt-3 w-full shadow">
@@ -28,12 +37,7 @@ const Navbar = () => {
           <Link href="/cart">
             <span className="text-gray-500 font-semibold  text-sm cursor-pointer w-full">Tentang Kami</span>
           </Link>
-          <Link href="/registration">
-            <span className="text-gray-500 font-semibold text-sm w-full">Daftar</span>
-          </Link>
-          <Link href="/login">
-            <span className="text-white bg-blue-600 px-5 py-2 rounded-lg text-sm w-24 text-center cursor-pointer">Masuk</span>
-          </Link>
+          <button onClick={doLogin} className="text-white bg-blue-600 px-5 py-2 rounded-lg">Mulai Berjualan</button>
         </div>
       </div>
       <div className="p-5 w-full flex-row space-x-5 items-center hidden lg:flex">
@@ -52,12 +56,7 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="flex flex-row items-center space-x-6">
-            <Link href="/registration">
-              <button className="text-gray-500 font-semibold">Daftar</button>
-            </Link>
-            <Link href="/login">
-              <button className="text-white bg-blue-600 px-5 py-2 rounded-lg">Masuk</button>
-            </Link>
+              <button onClick={doLogin} className="text-white bg-blue-600 px-5 py-2 rounded-lg">Mulai Berjualan</button>
           </div>
         </div>
       </div>
