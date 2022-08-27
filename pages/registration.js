@@ -5,6 +5,7 @@ import {onAuthStateChanged} from "firebase/auth"
 import {useRouter} from "next/router"
 import Layout from "../components/layout";
 import {createOrUpdate, getStore} from "../service/store"
+import { uploadImage } from "../service/product"
 
 const Registration = () => {
   const router= useRouter()
@@ -33,6 +34,13 @@ const Registration = () => {
     router.replace('/seller')
   }
 
+  const changeImage = async (e) => {
+    const file = e.target.files[0]
+    const downloadUrl = await uploadImage(file)
+    setImagePath(downloadUrl)
+  }
+
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if(!user){
@@ -53,10 +61,10 @@ const Registration = () => {
           <form onSubmit={doRegis} className="flex flex-col space-y-3 p-5 rounded-lg w-full md:w-2/4 lg:w-2/6">
             <h1 className="font-semibold text-2xl">Registration</h1>
             <div className="flex flex-col justify-center items-center relative">
-              <img src="/assets/placeholder.png" className="w-60 h-60 rounded-full"></img>
+            <img src={imagePath != "" ? imagePath : "/assets/placeholder.png"} className="w-60 h-60 rounded-full"></img>
               <label htmlFor="changeImage" className="absolute bottom-0 right-0 p-3 rounded-full bg-white ring-gray-300 ring-2">
                 <img src="/assets/camera.svg" className="w-6 h-6"></img>
-                <input type="file" accept="image/*" name="changeImage" id="changeImage" className="hidden"></input>
+                <input onChange={changeImage} type="file" accept="image/*" name="changeImage" id="changeImage" className="hidden"></input>
               </label>
             </div>
             <div className="flex flex-col">

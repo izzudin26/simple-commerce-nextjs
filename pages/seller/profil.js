@@ -1,10 +1,11 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import SellerLayout from "../../components/seller/layout";
-import {getStore, createOrUpdate} from "../../service/store"
-import {onAuthStateChanged} from "firebase/auth"
-import {auth} from "../../service/firebase"
-import {useRouter} from "next/router"
+import { getStore, createOrUpdate } from "../../service/store"
+import { uploadImage } from "../../service/product"
+import { onAuthStateChanged } from "firebase/auth"
+import { auth } from "../../service/firebase"
+import { useRouter } from "next/router"
 const Registration = () => {
   const router = useRouter()
   const [fullname, setFullName] = useState("");
@@ -18,12 +19,12 @@ const Registration = () => {
 
   const fetchStore = async () => {
     onAuthStateChanged(auth, async (user) => {
-      if(!user){
+      if (!user) {
         router.replace('/')
       }
       setUserid(user.uid)
       const store = await getStore(user.uid)
-      const {fullname, gender, storename, imagePath, number, address, email} = store.data()
+      const { fullname, gender, storename, imagePath, number, address, email } = store.data()
       setFullName(fullname)
       setGender(gender)
       setStoreName(storeName)
@@ -41,12 +42,17 @@ const Registration = () => {
 
   const submit = async () => {
     try {
-      await createOrUpdate({fullname, gender, address, email, imagePath, number, storename: storeName, userid})
+      await createOrUpdate({ fullname, gender, address, email, imagePath, number, storename: storeName, userid })
       alert("Berhasil")
     } catch (error) {
-      alert("Terjadi kesalahan mohon coba lagi")      
+      alert("Terjadi kesalahan mohon coba lagi")
     }
-    
+  }
+
+  const changeImage = async (e) => {
+    const file = e.target.files[0]
+    const downloadUrl = await uploadImage(file)
+    setImagePath(downloadUrl)
   }
 
   return (
@@ -59,10 +65,10 @@ const Registration = () => {
           <div className="flex flex-col space-y-3 p-5 rounded-lg w-full md:w-2/4 lg:w-2/6">
             <h1 className="font-semibold text-2xl">Profile</h1>
             <div className="flex flex-col justify-center items-center relative">
-              <img src="/assets/placeholder.png" className="w-60 h-60 rounded-full"></img>
+              <img src={imagePath != "" ? imagePath : "/assets/placeholder.png"} className="w-60 h-60 rounded-full"></img>
               <label htmlFor="changeImage" className="absolute bottom-0 right-0 p-3 rounded-full bg-white ring-gray-300 ring-2">
                 <img src="/assets/camera.svg" className="w-6 h-6"></img>
-                <input type="file" accept="image/*" name="changeImage" id="changeImage" className="hidden"></input>
+                <input onChange={changeImage} type="file" accept="image/*" name="changeImage" id="changeImage" className="hidden"></input>
               </label>
             </div>
             <div className="flex flex-col">
