@@ -1,17 +1,34 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {loginGoogle} from "../service/auth"
 import {useRouter} from "next/router"
+import {onAuthStateChanged} from "firebase/auth"
+import {auth} from "../service/firebase"
+
 
 const Navbar = () => {
   const router = useRouter()
   const [toggleNav, setToggleNav] = useState(false);
+  const [user, setUser] = useState(null)
   const switchNav = () => {
     setToggleNav(!toggleNav);
     console.log(toggleNav);
   };
 
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if(!user){
+        router.replace("/")
+      }
+      setUser(user)
+    })
+  }, [])
+
+
   const doLogin = async () => {
+    if(user){
+      return router.push("/seller")
+    }
     const uid = await loginGoogle()
     localStorage.setItem("id", uid)
     router.push("/registration")
@@ -37,7 +54,7 @@ const Navbar = () => {
           <Link href="/cart">
             <span className="text-gray-500 font-semibold  text-sm cursor-pointer w-full">Tentang Kami</span>
           </Link>
-          <button onClick={doLogin} className="text-white bg-blue-600 px-5 py-2 rounded-lg">Mulai Berjualan</button>
+          <button onClick={doLogin} className="text-white bg-blue-600 px-5 py-2 rounded-lg">{user ? 'Buka Toko' : 'Mulai Berjualan'}</button>
         </div>
       </div>
       <div className="p-5 w-full flex-row space-x-5 items-center hidden lg:flex">
@@ -56,7 +73,7 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="flex flex-row items-center space-x-6">
-              <button onClick={doLogin} className="text-white bg-blue-600 px-5 py-2 rounded-lg">Mulai Berjualan</button>
+              <button onClick={doLogin} className="text-white bg-blue-600 px-5 py-2 rounded-lg">{user ? 'Buka Toko' : 'Mulai Berjualan'}</button>
           </div>
         </div>
       </div>

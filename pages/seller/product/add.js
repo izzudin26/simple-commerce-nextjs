@@ -1,37 +1,68 @@
 import SellerLayout from "../../../components/seller/layout";
+import { insertProduct, uploadImage } from "../../../service/product"
 import { useState } from "react";
+import {useRouter} from "next/router"
 
 const ProductId = () => {
+  const router= useRouter()
   const [productName, setProductName] = useState("")
   const [description, setDescription] = useState("")
+  const [price, setPrice] = useState(0)
+  const [imagePath, setImagePath] = useState([])
+  const [selectedImage, setSelectedImage] = useState(null)
 
-  const submit = () => {
-    console.log(productName);
-    console.log(description);
+  const changeImage = async (e) => {
+    e.preventDefault();
+    const file = e.target.files[0]
+    console.log(file)
+    const url = await uploadImage(file)
+    setImagePath([...imagePath, url])
   }
 
-  const [imgState] = useState([]);
+  const changeSelectedImage = index => {
+    setSelectedImage(index)
+  }
+
+  const submit = async () => {
+    const uid = localStorage.getItem("uid")
+    await insertProduct({
+      name: productName,
+      description,
+      price,
+      imagePath,
+      userid: uid
+    })
+    router.replace('/seller')
+  }
+
   return (
     <>
       <SellerLayout>
         <main>
           <div className="p-5 flex flex-col mt-10 lg:flex-row w-full space-x-0 lg:space-x-3 mx-auto my-auto items-center lg:items-start justify-center">
             <div className="flex flex-col space-y-2">
-              <img src="/assets/placeholder_img.png" className="w-96 h-96 rounded-lg object-cover object-center"></img>
+              <img src={selectedImage != null ? imagePath[selectedImage] : '/assets/placeholder_img.png'} className="w-96 h-96 rounded-lg object-cover object-center"></img>
               <div className="flex flex-row space-x-2 overflow-x-auto items-center w-96 py-2 px-1">
-                {imgState.map((image, i) => (
-                  <img src="/assets/coffe.jpg" className="flex-none w-16 hover:ring-blue-500 hover:ring-2 duration-300 rounded-lg h-16" key={i}></img>
+                {imagePath.length > 0 && imagePath.map((image, i) => (
+                  <button onClick={() => changeSelectedImage(i)} key={i}>
+                    <img src={image} className="flex-none w-16 hover:ring-blue-500 hover:ring-2 duration-300 rounded-lg h-16"></img>
+                  </button>
                 ))}
-               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-14 h-14 my-auto text-gray-600">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m9-9H3" />
-              </svg>
+                <label for="upload" className="cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-14 h-14 my-auto text-gray-600">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m9-9H3" />
+                  </svg>
+                  <input onChange={changeImage} type={'file'} accept="image/*" className="hidden" id="upload" name="upload"></input>
+                </label>
+
               </div>
             </div>
             <div className="flex flex-col w-96 space-y-3 justify-between">
-                <input type={'text'} className="p-1 text-xl ring-2 ring-gray-300 w-full rounded focus:outline-none focus:ring-blue-600 duration-500" placeholder="Product Name" onChange={(e) => setProductName(e.target.value)}/>
-                <textarea rows={10} className="rounded ring-2 ring-gray-300 focus:ring-blue-500 duration-500 focus:outline-none p-1" onChange={(e) => setDescription(e.target.value)}></textarea>
-                <div>
-                <button onClick={submit} className="w-full rounded-lg bg-blue-600 text-white py-3">Simpan</button>
+              <input type={'text'} className="p-1 text-xl ring-2 ring-gray-300 w-full rounded focus:outline-none focus:ring-blue-600 duration-500" placeholder="Nama Produk" onChange={(e) => setProductName(e.target.value)} />
+              <textarea placeholder="Deskripsi Produk" rows={10} className="rounded ring-2 ring-gray-300 focus:ring-blue-500 duration-500 focus:outline-none p-1" onChange={(e) => setDescription(e.target.value)}></textarea>
+              <div>
+                <input type={'number'} className="p-1 text-xl ring-2 ring-gray-300 w-full rounded focus:outline-none focus:ring-blue-600 duration-500" placeholder="Harga" onChange={(e) => setPrice(e.target.value)} value={price} />
+                <button onClick={submit} className="w-full rounded-lg mt-3 bg-blue-600 text-white py-3">Simpan</button>
               </div>
             </div>
           </div>

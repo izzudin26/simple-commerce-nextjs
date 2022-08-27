@@ -25,7 +25,7 @@ const SellerNavbar = () => {
             <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
           </svg>
         </button>
-        <Link href="/seller/product">
+        <Link href="/seller">
           <button className="flex w-full text-white text-lg">Produk</button>
         </Link>
         <Link href="/seller/profil">
@@ -36,7 +36,7 @@ const SellerNavbar = () => {
       {/* Navbar Desktop */}
       <div className="w-64 hidden lg:flex flex-col bg-blue-600 h-screen top-0 left-0 p-5 space-y-5">
         <div className="text-3xl font-semibold mx-auto text-white">Store Name</div>
-        <Link href="/seller/product">
+        <Link href="/seller">
           <button className="flex w-full text-white text-lg">Produk</button>
         </Link>
         <Link href="/seller/profil">
