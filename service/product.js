@@ -1,5 +1,5 @@
 import { db, storage } from "./firebase"
-import { setDoc, getDoc, addDoc, collection, getDocs, deleteDoc, query, where } from "firebase/firestore"
+import { setDoc, getDoc, addDoc, collection, getDocs, deleteDoc, query, where, doc, updateDoc } from "firebase/firestore"
 import {ref, getDownloadURL, uploadBytes} from "firebase/storage"
 
 export const getProducts = async () => await getDocs(collection(db, "products"))
@@ -23,4 +23,9 @@ export const uploadImage = async (file) => {
     const storageRef = ref(storage, `${timestamp}${file.name}`)
     await uploadBytes(storageRef, file)
     return getDownloadURL(storageRef)
+}
+
+export const updateProduct = async (id, data) => {
+    const ref = doc(db, "products", id)
+    await updateDoc(ref, data)
 }

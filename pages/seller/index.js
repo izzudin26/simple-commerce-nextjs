@@ -3,12 +3,18 @@ import SellerLayout from "../../components/seller/layout"
 import ProductSeller from "../../components/seller/productSeller";
 import { getProductsByUser } from "../../service/product"
 import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth"
+import { auth } from "../../service/firebase"
+import {useRouter} from "next/router"
 
 export default () => {
     const [items, setItem] = useState([]);
-    const fetchData = async () => {
-        const uid = localStorage.getItem("uid")
-        const snapshots = await getProductsByUser(uid)
+    const [userid, setUserid] = useState("")
+    const router = useRouter()
+
+    const fetchData = async (user) => {
+        const snapshots = await getProductsByUser(user)
+        console.log(userid)
         const snapshotData = snapshots.docs.map(s => {
             return {
                 id: s.id,
@@ -22,7 +28,13 @@ export default () => {
     }
 
     useEffect(() => {
-        fetchData()
+        onAuthStateChanged(auth, (user) => {
+            if(!user){
+                router.replace("/")
+            }
+            setUserid(user.uid)
+            fetchData(user.uid)
+        })
     }, [])
     return (
         <SellerLayout>
@@ -35,7 +47,7 @@ export default () => {
                 </div>
                 <div className="mt-3 flex flex-col space-y-2">
                     {items.map((item, i) => (
-                        <ProductSeller key={i} id={i} name={item.name} description={item.description} price={item.price} />
+                        <ProductSeller thumbnail={item.imagePath[0]} key={i} id={item.id} name={item.name} description={item.description} price={item.price} />
                     ))}
                 </div>
             </div>
