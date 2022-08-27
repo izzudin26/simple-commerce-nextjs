@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-const ProductSeller = ({ name, id, description, price , thumbnail}) => {
+const ProductSeller = ({ name, id, description, price , thumbnail, onDelete }) => {
     return (
         <div className="flex flex-row rounded-lg ring-1 ring-gray-400 duration-500 hover:ring-2 hover:ring-blue-500 hover:shadow-md items-center space-x-2">
             <img src={thumbnail ?? "/assets/coffe.jpg"} className="w-24 h-24 object-cover rounded-l-lg"></img>
@@ -17,7 +17,7 @@ const ProductSeller = ({ name, id, description, price , thumbnail}) => {
                     <Link href={`/seller/product/${id}`}>
                         <button className="w-full text-green-500">Edit</button>
                     </Link>
-                    <button className="w-full text-red-500">Delete</button>
+                    <button onClick={onDelete} className="w-full text-red-500">Delete</button>
                 </div>
             </div>
         </div>

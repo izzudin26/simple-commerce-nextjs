@@ -1,7 +1,7 @@
 import Link from "next/link"
 import SellerLayout from "../../components/seller/layout"
 import ProductSeller from "../../components/seller/productSeller";
-import { getProductsByUser } from "../../service/product"
+import { getProductsByUser, deleteProduct } from "../../service/product"
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "../../service/firebase"
@@ -14,7 +14,6 @@ export default () => {
 
     const fetchData = async (user) => {
         const snapshots = await getProductsByUser(user)
-        console.log(userid)
         const snapshotData = snapshots.docs.map(s => {
             return {
                 id: s.id,
@@ -27,6 +26,15 @@ export default () => {
         setItem(snapshotData)
     }
 
+    const deleteItem = async (index) => {
+        console.log(index)
+        if(confirm("Ingin melanjutkan menghapus")){
+            const item = items[index]
+            await deleteProduct(item.id)
+            setItem(items.filter(it => it != item))
+        }
+    }
+
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if(!user){
@@ -36,6 +44,7 @@ export default () => {
             fetchData(user.uid)
         })
     }, [])
+    
     return (
         <SellerLayout>
             <div className="flex flex-col w-full h-screen p-10 overflow-scroll">
@@ -47,7 +56,7 @@ export default () => {
                 </div>
                 <div className="mt-3 flex flex-col space-y-2">
                     {items.map((item, i) => (
-                        <ProductSeller thumbnail={item.imagePath[0]} key={i} id={item.id} name={item.name} description={item.description} price={item.price} />
+                        <ProductSeller onDelete={() => deleteItem(i)} thumbnail={item.imagePath[0]} key={i} id={item.id} name={item.name} description={item.description} price={item.price} />
                     ))}
                 </div>
             </div>
