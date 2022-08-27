@@ -1,15 +1,18 @@
 import SellerLayout from "../../../components/seller/layout";
 import { insertProduct, uploadImage } from "../../../service/product"
-import { useState } from "react";
-import {useRouter} from "next/router"
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router"
+import { onAuthStateChanged } from "firebase/auth"
+import { auth } from "../../../service/firebase"
 
 const ProductId = () => {
-  const router= useRouter()
+  const router = useRouter()
   const [productName, setProductName] = useState("")
   const [description, setDescription] = useState("")
   const [price, setPrice] = useState(0)
   const [imagePath, setImagePath] = useState([])
   const [selectedImage, setSelectedImage] = useState(null)
+  const [uid, setuid] = useState("")
 
   const changeImage = async (e) => {
     e.preventDefault();
@@ -24,7 +27,6 @@ const ProductId = () => {
   }
 
   const submit = async () => {
-    const uid = localStorage.getItem("uid")
     await insertProduct({
       name: productName,
       description,
@@ -34,6 +36,15 @@ const ProductId = () => {
     })
     router.replace('/seller')
   }
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        router.replace('/')
+      }
+      setuid(user.uid)
+    })
+  }, [])
 
   return (
     <>
