@@ -32,6 +32,8 @@ const Registration = () => {
     }
     await createOrUpdate({fullname, gender, address, email, number, storename: storeName, imagePath, userid})
     router.replace('/seller')
+    window.location.reload()
+
   }
 
   const changeImage = async (e) => {
@@ -45,6 +47,8 @@ const Registration = () => {
     console.log(store)
     if(store){
       router.replace("/seller")
+      window.location.reload()
+
     }
   }
 
@@ -52,6 +56,8 @@ const Registration = () => {
     onAuthStateChanged(auth, (user) => {
       if(!user){
         return router.replace("/")
+        window.location.reload()
+
       }
       getCurrentStore(userid)
       setEmail(user.email)

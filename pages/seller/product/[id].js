@@ -40,6 +40,7 @@ const ProductId = () => {
     onAuthStateChanged(auth, (user) => {
       if(!user){
         router.replace("/")
+        window.location.reload()
       }
       setuid(user.uid)
     })

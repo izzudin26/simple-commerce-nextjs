@@ -8,9 +8,11 @@ const ProductSeller = ({ name, id, description, price , thumbnail, onDelete }) =
                 <div className="flex flex-col space-y-1">
                     <h1 className="text-lg font-medium">{name}</h1>
                     <p className="w-full">Rp.{price}</p>
-                    <div className="w-full flex flex-row lg:hidden">
+                    <div className="w-full flex flex-row space-x-3 lg:hidden">
+                    <Link href={`/seller/product/${id}`}>
                         <button className="w-full text-green-500">Edit</button>
-                        <button className="w-full text-red-500">Delete</button>
+                    </Link>
+                        <button onClick={onDelete} className="w-full text-red-500">Delete</button>
                     </div>
                 </div>
                 <div className=" lg:flex flex-row hidden space-x-5 p-3">

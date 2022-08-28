@@ -5,7 +5,7 @@ import { getProductsByUser, deleteProduct } from "../../service/product"
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "../../service/firebase"
-import {useRouter} from "next/router"
+import { useRouter } from "next/router"
 
 export default () => {
     const [items, setItem] = useState([]);
@@ -28,7 +28,7 @@ export default () => {
 
     const deleteItem = async (index) => {
         console.log(index)
-        if(confirm("Ingin melanjutkan menghapus")){
+        if (confirm("Ingin melanjutkan menghapus")) {
             const item = items[index]
             await deleteProduct(item.id)
             setItem(items.filter(it => it != item))
@@ -37,14 +37,16 @@ export default () => {
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
-            if(!user){
+            if (!user) {
                 router.replace("/")
+                window.location.reload()
+
             }
             setUserid(user.uid)
             fetchData(user.uid)
         })
     }, [])
-    
+
     return (
         <SellerLayout>
             <div className="flex flex-col w-full h-screen p-10 overflow-scroll">
