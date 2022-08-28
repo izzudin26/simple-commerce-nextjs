@@ -42,6 +42,7 @@ const Registration = () => {
 
   const getCurrentStore = async (userid) => {
     const store = await getStore(userid)
+    console.log(store)
     if(store){
       router.replace("/seller")
     }

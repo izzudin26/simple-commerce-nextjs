@@ -8,22 +8,22 @@ const Chooseus = () => {
             <div className="bg-blue-500 items-center justify-center p-2 rounded-full">
               <img src="/assets/box.svg" className="w-8 h-8"></img>
             </div>
-            <span className="text-lg font-semibold">Lorem ipsum</span>
-            <p className="text-gray-500 text-sm text-center">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text</p>
+            <span className="text-lg font-semibold">Produk Berkualitas</span>
+            <p className="text-gray-500 text-sm text-center">Produk UMKM Blimbing menyediakan produk yang tidak mengecewakan pelanggan, dan memuaskan calon pembeli</p>
           </div>
           <div className="rounded-lg w-96 p-5 h-56 bg-gray-200 mx-auto items-center justify-center flex flex-col space-y-3 hover:ring-2 ring-blue-400 duration-300">
             <div className="bg-blue-500 items-center justify-center p-2 rounded-full">
               <img src="/assets/box.svg" className="w-8 h-8"></img>
             </div>
-            <span className="text-lg font-semibold">Lorem ipsum</span>
-            <p className="text-gray-500 text-sm text-center">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text</p>
+            <span className="text-lg font-semibold">Produk Original</span>
+            <p className="text-gray-500 text-sm text-center">Produk UMKM Blimbing yang disediakan merupakan produk Original dari Blimbing, yang terjamin kualitasnya</p>
           </div>
           <div className="rounded-lg w-96 p-5 h-56 bg-gray-200 mx-auto items-center justify-center flex flex-col space-y-3 hover:ring-2 ring-blue-400 duration-300">
             <div className="bg-blue-500 items-center justify-center p-2 rounded-full">
               <img src="/assets/box.svg" className="w-8 h-8"></img>
             </div>
-            <span className="text-lg font-semibold">Lorem ipsum</span>
-            <p className="text-gray-500 text-sm text-center">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text</p>
+            <span className="text-lg font-semibold">Harga Terjangkau</span>
+            <p className="text-gray-500 text-sm text-center">Harga tentu saja sangat terjangkau dan cocok untuk semua kalangan dari anak-anak hingga orang dewasa</p>
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@ const Product = ({ products }) => {
       <div className="flex flex-col container mx-auto justify-center items-center p-5 space-y-3">
         <div className="flex flex-row justify-between items-end w-full">
           <div className="text-xl lg:text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-blue-600 text-left">Produk Terbaru</div>
-          <Link href="/products">
+          <Link href="/product">
             <div className="text-sm cursor-pointer lg:text-base font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-600 text-left">Tampilkan lebih banyak</div>
           </Link>
         </div>
