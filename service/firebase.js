@@ -1,4 +1,4 @@
-import * as Firebase from 'Firebase/app';
+import { getApps, initializeApp } from 'Firebase/app';
 import { getAuth } from 'Firebase/auth';
 import { getFirestore } from "firebase/firestore"
 import { getStorage } from "firebase/storage"
@@ -13,11 +13,9 @@ const FirebaseCredentials = {
   measurementId: "G-B50ZRKWBLS"
 }
 // if a Firebase instance doesn't exist, create one
-if (!Firebase.getApps().length) {
-  Firebase.initializeApp(FirebaseCredentials)
+if (!getApps().length) {
+  initializeApp(FirebaseCredentials)
 }
 export const auth = getAuth()
 export const db = getFirestore()
 export const storage = getStorage()
-
-export default Firebase;
