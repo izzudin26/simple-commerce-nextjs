@@ -20,7 +20,9 @@ const Registration = () => {
   const fetchStore = async () => {
     onAuthStateChanged(auth, async (user) => {
       if (!user) {
-        return router.replace('/')
+        // return router.replace('/')
+        window.location.href = "/seller"
+
       }
       setUserid(user.uid)
       const store = await getStore(user.uid)

@@ -38,9 +38,9 @@ export default () => {
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (!user) {
-                router.replace("/")
-                window.location.reload()
-
+                // router.replace("/")
+                // window.location.reload()
+                window.location.href = "/"
             }
             setUserid(user.uid)
             fetchData(user.uid)

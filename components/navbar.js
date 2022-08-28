@@ -24,13 +24,13 @@ const Navbar = () => {
 
   const doLogin = async () => {
     if(user){
-      router.push("/seller")
-      window.location.reload()
+      // router.push("/seller")
+      window.location.href = "/seller"
     }
     const uid = await loginGoogle()
     localStorage.setItem("id", uid)
-    router.push("/registration")
-    window.location.reload()
+    // router.push("/registration")
+    window.location.href = "/seller"
   }
   return (
     <>

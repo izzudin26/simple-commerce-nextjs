@@ -55,8 +55,8 @@ const Registration = () => {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if(!user){
-        return router.replace("/")
-        window.location.reload()
+        // return router.replace("/")
+        window.location.href = "/"
 
       }
       getCurrentStore(userid)
