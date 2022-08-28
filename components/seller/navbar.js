@@ -1,12 +1,20 @@
 import Link from "next/link";
 import { useState } from "react";
+import {logout} from "../../service/auth"
+import {useRouter} from "next/router"
 
 const SellerNavbar = () => {
+  const router= useRouter()
   const [toggleNavbar, setToggleNavbar] = useState(false);
 
   const switchNav = () => {
     setToggleNavbar(!toggleNavbar);
   };
+
+  const doLogout = async () => {
+    await logout()
+    router.replace("/")
+  }
 
   return (
     <>
@@ -31,6 +39,8 @@ const SellerNavbar = () => {
         <Link href="/seller/profil">
           <button className="flex w-full text-white text-lg">Profil</button>
         </Link>
+        <button onClick={doLogout} className="flex w-full text-white text-lg">Logout</button>
+
       </div>
       {/* End Navbar Mobile */}
       {/* Navbar Desktop */}
@@ -42,6 +52,8 @@ const SellerNavbar = () => {
         <Link href="/seller/profil">
           <button className="flex w-full text-white text-lg">Profil</button>
         </Link>
+        <button onClick={doLogout} className="flex w-full text-white text-lg">Logout</button>
+
       </div>
       {/* End Navbar Desktop */}
     </>

@@ -40,12 +40,19 @@ const Registration = () => {
     setImagePath(downloadUrl)
   }
 
+  const getCurrentStore = async (userid) => {
+    const store = await getStore(userid)
+    if(store){
+      router.replace("/seller")
+    }
+  }
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if(!user){
         router.replace("/")
       }
+      getCurrentStore(userid)
       setEmail(user.email)
       setUserid(user.uid)
     })
