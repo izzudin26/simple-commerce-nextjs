@@ -17,9 +17,6 @@ const Navbar = () => {
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      if(!user){
-        router.replace("/")
-      }
       setUser(user)
     })
   }, [])

@@ -50,7 +50,7 @@ const Registration = () => {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if(!user){
-        router.replace("/")
+        return router.replace("/")
       }
       getCurrentStore(userid)
       setEmail(user.email)
