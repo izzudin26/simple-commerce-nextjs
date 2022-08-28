@@ -7,6 +7,19 @@ import { getStore } from "../../service/store"
 const ProductId = ({ name, images, description, whatsapp, storename }) => {
   const [selectedImage, setSelectedImage] = useState(0)
 
+  const redirectWhatsapp = () => {
+    const str = whatsapp.toString()
+    let url
+    if(str[0] == "0"){
+      url = `62${str.slice(1)}`
+    }else if(str[0] == "8"){
+      url = `62${str}`
+    }else{
+      url = str
+    }
+    window.open(`http://wa.me/${url}`)
+  }
+
   return (
     <>
       <Head>
@@ -31,7 +44,7 @@ const ProductId = ({ name, images, description, whatsapp, storename }) => {
                 <p className="text-base">{description}</p>
               </div>
               <div>
-                <button className="w-full rounded-lg bg-green-600 text-white py-3">Beli</button>
+                <button onClick={redirectWhatsapp} className="w-full rounded-lg bg-green-600 text-white py-3">Beli</button>
               </div>
             </div>
           </div>
