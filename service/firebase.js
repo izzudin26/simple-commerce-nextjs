@@ -1,5 +1,5 @@
-import { getApps, initializeApp } from 'Firebase/app';
-import { getAuth } from 'Firebase/auth';
+import { getApps, initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
 import { getFirestore } from "firebase/firestore"
 import { getStorage } from "firebase/storage"
 
