@@ -5,9 +5,9 @@ const Heros = () => {
     <div className="flex flex-col-reverse lg:flex-row space-y-5 lg:space-y-0 py-5 w-full container mx-auto px-5 items-center justify-between lg:min-h-screen">
       <div className="w-full flex flex-col space-y-5 items-start justify-center mt-5 lg:mt-0">
         <h1 className="text-3xl lg:text-5xl font-semibold">
-          Beautiful Pages to <span className="text-blue-600">Tell Your Story!</span>
+        <span className="text-blue-600">Blimbing NanoMerce</span>
         </h1>
-        <p className="text-gray-400">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley</p>
+        <p className="text-gray-400">Merupakan platform yang menghubungkan masyarakat untuk membeli produk UMKM di kelurahan Blimbing</p>
         <div className="flex flex-row space-x-2">
           <Link href="/product">
             <button className="px-5 py-3 lg:py-2 rounded-lg bg-blue-600 text-sm lg:text-lg text-white font-semibold">Jelajahi Produk Kami</button>

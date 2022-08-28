@@ -48,9 +48,7 @@ const Navbar = () => {
           <Link href="/products">
             <span className="text-gray-500 font-semibold text-sm  cursor-pointer w-full">Produk</span>
           </Link>
-          <Link href="/cart">
-            <span className="text-gray-500 font-semibold  text-sm cursor-pointer w-full">Tentang Kami</span>
-          </Link>
+          
           <button onClick={doLogin} className="text-white bg-blue-600 px-5 py-2 rounded-lg">{user ? 'Buka Toko' : 'Mulai Berjualan'}</button>
         </div>
       </div>
@@ -65,9 +63,7 @@ const Navbar = () => {
             <Link href="/product">
               <span className="text-gray-500 font-semibold cursor-pointer">Produk</span>
             </Link>
-            <Link href="/cart">
-              <span className="text-gray-500 font-semibold cursor-pointer">Tentang Kami</span>
-            </Link>
+           
           </div>
           <div className="flex flex-row items-center space-x-6">
               <button onClick={doLogin} className="text-white bg-blue-600 px-5 py-2 rounded-lg">{user ? 'Buka Toko' : 'Mulai Berjualan'}</button>
